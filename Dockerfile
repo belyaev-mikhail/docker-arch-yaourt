@@ -12,6 +12,9 @@ RUN pacman --noconfirm -S pacman && pacman-db-upgrade
 RUN pacman --noconfirm -Syyu && \
     pacman --noconfirm -S base-devel yajl sudo rsync git
 
+# regenerate locales
+RUN echo "en_US.UTF-8 UTF-8" >/etc/locale.gen && locale-gen
+
 # add yaourt user and group
 RUN groupadd -r yaourt && \
     useradd -r -g yaourt yaourt
